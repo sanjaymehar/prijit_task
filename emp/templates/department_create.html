@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create Department</button>
+</form>
+
+<h2>Departments:</h2>
+<ul>
+  {% for department in departments %}
+    <li>{{ department }}</li>
+  {% empty %}
+    <li>No departments created yet.</li>
+  {% endfor %}
+</ul>
+
+</body>
+</html>

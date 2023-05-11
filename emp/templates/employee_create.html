@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="POST">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Create Employee</button>
+</form>
+<h2>Employees:</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Employee Id</th>
+      <th>Name</th>
+      <th>Department</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for employee in employees %}
+      <tr>
+        <td>{{ employee.id }}</td>
+        <td>{{ employee.name }}</td>
+        <td>
+          {% for department in employee.departments.all %}
+            {{ department.name }},
+          {% endfor %}
+        </td>
+      </tr>
+    {% empty %}
+      <tr>
+        <td colspan="3">No employees created yet.</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</body>
+</html>
